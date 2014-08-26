@@ -156,7 +156,9 @@ Element providing a Thelma wrapper for the Google geochart.
             textStyle: { 
               color: colors.theme.foreground1, 
               fontName: colors.theme.font, 
-              fontSize: '0.85em'
+              fontSize: '0.85em',
+              stroke: 'none',
+              stroke-width: '0'            
             } 
           }
         };
@@ -190,7 +192,7 @@ Element providing a Thelma wrapper for the Google geochart.
   // TODO
   // get regionCode field to show up in composer
   // figure out a good way to give user options for regionCode
-  // figure out why legend is being created twice
+  // figure out why legend is being created twice w/different styles
   // figure out how to make click events work on mobile
   // figure out how to format legend and tooltips
 
