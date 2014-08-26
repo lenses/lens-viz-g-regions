@@ -136,7 +136,7 @@ Element providing a Thelma wrapper for the Google geochart.
       configureOptions: function(){
         var self = this,
             colors =  self.getColors();
-        
+        console.log(colors.theme.background);
         // Determine intermediate variables
         self.color = self.color || colors.accents[0];
         self.backgroundColor = self.backgroundColor || "none";
@@ -144,13 +144,12 @@ Element providing a Thelma wrapper for the Google geochart.
 
         // Define chart options 
         self.options = {
-          tooltip: { trigger: 'selection'},
+          tooltip: { trigger: 'selection', textStyle: { color: colors.theme.background, fontName: colors.theme.font, fontSize: '0.85em'}},
           displayMode: self.displayMode,
           colorAxis: { colors: [self.color] },
           backgroundColor: {fill: self.backgroundColor},
           region: self.regionCode,
           resolution: self.resolution,
-        
           legend: { 
             numberFormat: self.numberFormat,
             textStyle: { 
@@ -165,6 +164,7 @@ Element providing a Thelma wrapper for the Google geochart.
 
         if (self.minValue) { self.options.colorAxis.minValue = self.minValue; }
         if (self.maxValue) { self.options.colorAxis.maxValue = self.maxValue; }
+        
 
       },
       /**
