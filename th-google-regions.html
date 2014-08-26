@@ -15,9 +15,11 @@ Element providing a Thelma wrapper for the Google geochart.
 @status alpha
 @homepage http://nishacodes.github.io/th-google-regions
 -->
-<polymer-element extends="th-animated" name="th-google-regions" attributes="chartWidth chartHeight chartData regionCode resolution dataLabel color backgroundColor minValue maxValue displayMode">
+<polymer-element extends="th-animated" name="th-google-regions" attributes="chartWidth chartHeight chartData regionCode resolution dataLabel color backgroundColor minValue maxValue displayMode legend">
   <core-style ref="theme"></core-style>
+  <style>
 
+  </style>
   <template> 
     <google-chart on-touchend="{{regionClick}}"
           type='geo'
@@ -109,6 +111,11 @@ Element providing a Thelma wrapper for the Google geochart.
        */
       displayMode: "fill",
       /**
+       * 'legend' determines whether or not to display a legend
+       * @type {Boolean}
+       */
+      legend: true,
+      /**
        * 'numberFormat' refers to the number format of the legend min and max
        * @type {String}
        * @example: '.##'
@@ -164,6 +171,7 @@ Element providing a Thelma wrapper for the Google geochart.
 
         if (self.minValue) { self.options.colorAxis.minValue = self.minValue; }
         if (self.maxValue) { self.options.colorAxis.maxValue = self.maxValue; }
+        if (!self.legend) { self.options.legend = 'none';}
         
 
       },
@@ -190,11 +198,9 @@ Element providing a Thelma wrapper for the Google geochart.
     });
 
   // TODO
-  // get regionCode field to show up in composer
   // figure out a good way to give user options for regionCode
   // figure out why legend is being created twice w/different styles
   // figure out how to make click events work on mobile
-  // figure out how to format legend and tooltips
 
   </script>
 
