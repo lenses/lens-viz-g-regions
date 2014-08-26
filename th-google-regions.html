@@ -31,51 +31,67 @@ Element providing solution to no problem in particular.
   <script>
 
     Polymer('th-google-regions', {
-
+      region: "155", // world, continent code, subcontinent code, country code, state code
+      resolution: "countries", // countries, provinces, metros
+      dataLabel: "Popularity",
+      chartData: [
+        {"region": "Germany", "value": 100},
+        {"region": "Switzerland", "value": 50},
+        {"region": "France", "value": 300},
+        {"region": "Austria", "value": 200},
+        {"region": "Netherlands", "value": 500}
+      ],
+      minValue: "0",
+      maxValue: "",
       chartWidth: 280,
       chartHeight: 400,
       backgroundColor: "none",
       color: "",
       displayMode: "auto", 
       numberFormat: "",
+      showTooltips: true,      
       ready: function() {
         var self = this;
-
         self.reformatData();
         self.configureOptions();
 
       },
       reformatData: function(){
-        var self = this;
-        // convert array of objects into array of arrays
-        self.data = [["Country", "Popularity"],
-                 ["Germany", 200],
-                 ["United States", 300],
-                 ["Brazil", 400],
-                 ["Canada", 500],
-                 ["France", 600],
-                ["RU", 700]];
+        var self = this;        
+        self.data = self.chartData.map(function(item){
+          return [item.region, item.value];
+        });
+        self.data.unshift(["Metro", self.dataLabel]);
       },
       configureOptions: function(){
         var self = this,
             colors =  self.getColors();
-            console.log(colors);
+        
         // Determine intermediate variables
         self.color = self.color || colors.accents[0];
+        self.minValue = self.minValue || 0;
 
         // Define chart options 
-        self.options = {};
-        self.options.displayMode = self.displayMode;
-        self.options.colorAxis = {colors: [self.color]};
-        self.options.backgroundColor = {fill: self.backgroundColor};
-        self.options.legend = { numberFormat: self.numberFormat,
-                                textStyle: { 
-                                  color: colors.theme.foreground1, 
-                                  fontName: colors.theme.font, 
-                                  fontSize: '0.85em'
-                                }  
-                              };
+        self.options = {
+          tooltip: { trigger: 'selection'},
+          displayMode: self.displayMode,
+          colorAxis: { colors: [self.color] },
+          backgroundColor: {fill: self.backgroundColor},
+          region: self.region,
+          resolution: self.resolution,
+        
+          legend: { 
+            numberFormat: self.numberFormat,
+            textStyle: { 
+              color: colors.theme.foreground1, 
+              fontName: colors.theme.font, 
+              fontSize: '0.85em'
+            } 
+          }
+        };
 
+        if (self.minValue) { self.options.colorAxis.minValue = self.minValue; }
+        if (self.maxValue) { self.options.colorAxis.maxValue = self.maxValue; }
 
       },
       getColors: function(){
@@ -93,8 +109,6 @@ Element providing solution to no problem in particular.
 
         return colors;
       }
-
-    
 
     });
 
