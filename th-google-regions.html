@@ -1,5 +1,6 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../thelma-core/thelma_core.html">
+<link rel="import" href="../thelma-charts/d3-chart.html">
 <link rel="import" href="../thelma-utils/th-theme.html">
 <link rel="import" href="../google-chart/google-chart.html">
 
@@ -15,7 +16,7 @@ Element providing solution to no problem in particular.
 @status alpha
 @homepage http://nishacodes.github.io/th-google-regions
 -->
-<polymer-element extends="th-animated" name="th-google-regions" attributes="region resolution dataLabel backgroundColor minValue maxValue displayMode">
+<polymer-element extends="d3-chart" name="th-google-regions" attributes="region resolution dataLabel backgroundColor minValue maxValue displayMode">
   <core-style ref="theme"></core-style>
 
   <template> 
