@@ -1,6 +1,6 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../thelma-core/thelma_core.html">
-<link rel="import" href="../thelma-charts/th-d3-chart.html">
+
 <link rel="import" href="../thelma-utils/th-theme.html">
 <link rel="import" href="../google-chart/google-chart.html">
 
@@ -16,11 +16,11 @@ Element providing solution to no problem in particular.
 @status alpha
 @homepage http://nishacodes.github.io/th-google-regions
 -->
-<polymer-element extends="d3-chart" name="th-google-regions" attributes="region resolution dataLabel color backgroundColor minValue maxValue displayMode">
+<polymer-element extends="th-animated" name="th-google-regions" attributes="chartWidth chartHeight chartData regionCode resolution dataLabel color backgroundColor minValue maxValue displayMode">
   <core-style ref="theme"></core-style>
 
   <template> 
-    <google-chart
+    <google-chart on-touchend="{{regionClick}}"
           type='geo'
           height="{{chartHeight}}px"
           width="{{chartWidth}}px"
@@ -32,7 +32,7 @@ Element providing solution to no problem in particular.
   <script>
 
     Polymer('th-google-regions', {
-      region: "155", // world, continent code, subcontinent code, country code, state code
+      regionCode: "155", // world, continent code, subcontinent code, country code, state code
       resolution: "countries", // countries, provinces, metros
       dataLabel: "Popularity",
       chartData: [
@@ -62,7 +62,7 @@ Element providing solution to no problem in particular.
         self.data = self.chartData.map(function(item){
           return [item.region, item.value];
         });
-        self.data.unshift(["Metro", self.dataLabel]);
+        self.data.unshift(["Region", self.dataLabel]);
       },
       configureOptions: function(){
         var self = this,
@@ -79,7 +79,7 @@ Element providing solution to no problem in particular.
           displayMode: self.displayMode,
           colorAxis: { colors: [self.color] },
           backgroundColor: {fill: self.backgroundColor},
-          region: self.region,
+          region: self.regionCode,
           resolution: self.resolution,
         
           legend: { 
