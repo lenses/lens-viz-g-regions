@@ -21,7 +21,7 @@ Element providing a Thelma wrapper for the Google geochart.
 
   </style>
   <template> 
-    <google-chart on-touchend="{{regionClick}}"
+    <google-chart id="googleChart" on-touchend="{{regionClick}}"
           type='geo'
           height="{{chartHeight}}px"
           width="{{chartWidth}}px"
@@ -136,6 +136,8 @@ Element providing a Thelma wrapper for the Google geochart.
           return [item.region, item.value];
         });
         self.data.unshift(["Region", self.dataLabel]);
+
+       
       },
       /**
        * 'configureOptions' sets the appropriate options properties for the map, given the attribute values
@@ -173,7 +175,9 @@ Element providing a Thelma wrapper for the Google geochart.
         if (self.maxValue) { self.options.colorAxis.maxValue = self.maxValue; }
         if (!self.legend) { self.options.legend = 'none';}
         
-
+         // var google = self.$.googleChart.$.chartdiv.querySelectorAll('div');
+        // var chart = google.$.chartdiv;
+        // console.log(google);
       },
       /**
        * 'getColors' gets the color theme from the global scope
