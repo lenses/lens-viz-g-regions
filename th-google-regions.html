@@ -15,7 +15,7 @@ Element providing solution to no problem in particular.
 @status alpha
 @homepage http://nishacodes.github.io/th-google-regions
 -->
-<polymer-element extends="th-animated" name="th-google-regions" >
+<polymer-element extends="th-animated" name="th-google-regions" attributes="region resolution dataLabel backgroundColor minValue maxValue displayMode">
   <core-style ref="theme"></core-style>
 
   <template> 
@@ -45,7 +45,7 @@ Element providing solution to no problem in particular.
       maxValue: "",
       chartWidth: 280,
       chartHeight: 400,
-      backgroundColor: "none",
+      backgroundColor: "",
       color: "",
       displayMode: "auto", 
       numberFormat: "",
@@ -69,6 +69,7 @@ Element providing solution to no problem in particular.
         
         // Determine intermediate variables
         self.color = self.color || colors.accents[0];
+        self.backgroundColor = self.backgroundColor || "none";
         self.minValue = self.minValue || 0;
 
         // Define chart options 
