@@ -1,4 +1,7 @@
 <link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../thelma-core/thelma_core.html">
+<link rel="import" href="../thelma-utils/th-theme.html">
+<link rel="import" href="../google-chart/google-chart.html">
 
 <!--
 Element providing solution to no problem in particular.
@@ -12,54 +15,86 @@ Element providing solution to no problem in particular.
 @status alpha
 @homepage http://nishacodes.github.io/th-google-regions
 -->
-<polymer-element name="th-google-regions" attributes="notitle">
+<polymer-element extends="th-animated" name="th-google-regions" >
+  <core-style ref="theme"></core-style>
 
-  <template>
-
-    <link rel="stylesheet" href="th-google-regions.css" />
-
-    <content></content>
-
+  <template> 
+    <google-chart
+          type='geo'
+          height="{{chartHeight}}px"
+          width="{{chartWidth}}px"
+          options= "{{options}}"
+          data="{{data}}">
+    </google-chart>
   </template>
 
   <script>
 
     Polymer('th-google-regions', {
-      /**
-       * The `noevent` event is not actually fired from here,
-       * we document it as an example of documenting events.
-       *
-       * @event noevent
-       */
 
-      /**
-       * The `notitle` attribute does not yet have a purpose.
-       *
-       * @attribute notitle
-       * @type string
-       */
-      notitle: '',
-
-      /**
-       * The `aProp` is a property that does something cool.
-       *
-       * @property aProp
-       * @type bool
-       */
-      aProp: false,
-
+      chartWidth: 280,
+      chartHeight: 400,
+      backgroundColor: "none",
+      color: "",
+      displayMode: "auto", 
+      numberFormat: "",
       ready: function() {
-      },
+        var self = this;
 
-      /**
-       * The `task` method does no work at this time.
-       *
-       * @method task
-       * @return {Object} Returns undefined.
-       * @param {String} dummy Serves no purpose today.
-       */
-      task: function(dummy) {
+        self.reformatData();
+        self.configureOptions();
+
+      },
+      reformatData: function(){
+        var self = this;
+        // convert array of objects into array of arrays
+        self.data = [["Country", "Popularity"],
+                 ["Germany", 200],
+                 ["United States", 300],
+                 ["Brazil", 400],
+                 ["Canada", 500],
+                 ["France", 600],
+                ["RU", 700]];
+      },
+      configureOptions: function(){
+        var self = this,
+            colors =  self.getColors();
+            console.log(colors);
+        // Determine intermediate variables
+        self.color = self.color || colors.accents[0];
+
+        // Define chart options 
+        self.options = {};
+        self.options.displayMode = self.displayMode;
+        self.options.colorAxis = {colors: [self.color]};
+        self.options.backgroundColor = {fill: self.backgroundColor};
+        self.options.legend = { numberFormat: self.numberFormat,
+                                textStyle: { 
+                                  color: colors.theme.foreground1, 
+                                  fontName: colors.theme.font, 
+                                  fontSize: '0.85em'
+                                }  
+                              };
+
+
+      },
+      getColors: function(){
+        colors = {};
+        colors.theme = window.CoreStyle.g.theme;
+        colors.accents = [];
+
+        for (var color in colors.theme){
+          if(/^accent/.test(color)){
+            colors.accents.push(colors.theme[color]);
+          }
+        }
+
+        colors.count = colors.accents.length;
+
+        return colors;
       }
+
+    
 
     });
 

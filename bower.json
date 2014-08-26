@@ -8,6 +8,7 @@
   ],
   "main": "th-google-regions.html",
   "dependencies": {
-    "polymer": "Polymer/polymer#~0.3.5"
+    "polymer": "Polymer/polymer#~0.3.5",
+    "google-chart": "GoogleWebComponents/google-chart#master"
   }
 }
