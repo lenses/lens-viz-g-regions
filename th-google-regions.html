@@ -150,6 +150,8 @@ Element providing a Thelma wrapper for the Google geochart.
         self.color = self.color || colors.accents[0];
         self.backgroundColor = self.backgroundColor || "none";
         self.minValue = self.minValue || 0;
+        // 'world' needs to be lowercase, all other regions need to be uppercase
+        self.regionCode = self.regionCode.toLowerCase() == 'world' ? 'world' : self.regionCode.toUpperCase();
 
         // Define chart options 
         self.options = {
@@ -157,7 +159,7 @@ Element providing a Thelma wrapper for the Google geochart.
           displayMode: self.displayMode,
           colorAxis: { colors: [self.color] },
           backgroundColor: {fill: self.backgroundColor},
-          region: self.regionCode.toUpperCase(),
+          region: self.regionCode,
           resolution: self.resolution,
           legend: { 
             numberFormat: self.numberFormat,
