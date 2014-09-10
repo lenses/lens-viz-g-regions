@@ -17,10 +17,13 @@ Element providing a Thelma wrapper for the Google geochart.
 -->
 <polymer-element extends="th-animated" name="th-google-regions" attributes="chartWidth chartHeight chartData regionCode resolution dataLabel color backgroundColor minValue maxValue displayMode legend">
   <core-style ref="theme"></core-style>
-  <style>
-
-  </style>
   <template> 
+  <style>
+    ::shadow text {
+      stroke-width: 0;
+    }
+  </style>
+  
     <google-chart id="googleChart" on-touchend="{{regionClick}}"
           type='geo'
           height="{{chartHeight}}px"
@@ -143,7 +146,7 @@ Element providing a Thelma wrapper for the Google geochart.
        * 'configureOptions' sets the appropriate options properties for the map, given the attribute values
        */
       configureOptions: function(){
-        var self = this,
+        var self = this;
             colors =  self.getColors();
         console.log(colors.theme.background);
         // Determine intermediate variables
@@ -164,7 +167,7 @@ Element providing a Thelma wrapper for the Google geochart.
           legend: { 
             numberFormat: self.numberFormat,
             textStyle: { 
-              // color: colors.theme.foreground1, 
+              color: colors.theme.foreground1, 
               fontName: colors.theme.font, 
               fontSize: '0.85em',
               stroke: 'none',
