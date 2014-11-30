@@ -7,17 +7,22 @@ Element providing a Thelma wrapper for the Google geochart.
 
 ##### Example
 
-    <th-google-regions chartWidth="200" chartHeight="200" regionCode="155" resolution="countries" color="blue"></th-google-regions>
+    <th-google-regions regionCode="155" resolution="countries" color="blue"></th-google-regions>
 
 @element th-google-regions
 @blurb Element providing a Thelma wrapper for the Google geochart.
 @status alpha
 @homepage http://nishacodes.github.io/th-google-regions
 -->
-<polymer-element extends="th-animated" name="th-google-regions" attributes="chartWidth chartHeight chartData regionCode resolution dataLabel color backgroundColor minValue maxValue displayMode legend">
-  <core-style ref="theme"></core-style>
+<polymer-element extends="th-animated" name="th-google-regions" attributes="chartData regionCode resolution dataLabel color backgroundColor minValue maxValue displayMode legend">
   <template> 
+  <core-style ref="theme"></core-style>
+  
   <style>
+    :host {
+      width: 280px;
+      height: 400px;
+    }
     ::shadow text {
       stroke-width: 0;
     }
@@ -87,16 +92,6 @@ Element providing a Thelma wrapper for the Google geochart.
        */
       maxValue: "",
       /**
-       * 'chartWidth' refers to the width of the element container
-       * @type {Number}
-       */
-      chartWidth: '280',
-      /**
-       * 'chartHeight' refers to the height of the element container
-       * @type {Number}
-       */
-      chartHeight: '400',
-      /**
        * 'backgroundColor' refers to the background color of the container
        * @type {String}
        */
@@ -125,8 +120,8 @@ Element providing a Thelma wrapper for the Google geochart.
       numberFormat: "",     
       ready: function() {
         var self = this;
-        self.computedHeight = self.computeHeight(self.chartHeight);
-        self.computedWidth = self.computeWidth(self.chartWidth);
+        self.computedHeight = self.computeHeight();
+        self.computedWidth = self.computeWidth();
 
         self.reformatData();
         self.configureOptions();
@@ -150,7 +145,7 @@ Element providing a Thelma wrapper for the Google geochart.
       configureOptions: function(){
         var self = this;
             colors =  self.getColors();
-        console.log(colors.theme.background);
+        
         // Determine intermediate variables
         self.color = self.color || colors.accents[0];
         self.backgroundColor = self.backgroundColor || "none";
