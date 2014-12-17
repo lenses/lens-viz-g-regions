@@ -14,7 +14,7 @@ Element providing a Thelma wrapper for the Google geochart.
 @status alpha
 @homepage http://nishacodes.github.io/th-google-regions
 -->
-<polymer-element extends="th-animated" name="th-google-regions" attributes="chartData regionCode resolution dataLabel color backgroundColor minValue maxValue displayMode legend">
+<polymer-element extends="th-animated" name="th-google-regions" attributes="chartData selection regionCode resolution dataLabel color backgroundColor minValue maxValue displayMode legend">
   <template> 
   <core-style ref="theme"></core-style>
   
@@ -28,7 +28,7 @@ Element providing a Thelma wrapper for the Google geochart.
     }
   </style>
   
-    <google-chart id="googleChart" on-touchend="{{regionClick}}" style="width:100%; height: 100%;"
+    <google-chart id="googleChart" on-touchend="{{regionClick}}" selection="{{selection}}" style="width:100%; height: 100%;"
           type='geo'
           options= "{{options}}"
           data="{{data}}">
