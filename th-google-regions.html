@@ -19,10 +19,7 @@ Element providing a Thelma wrapper for the Google geochart.
   <core-style ref="theme"></core-style>
   
   <style>
-    :host {
-      width: 280px;
-      height: 400px;
-    }
+   
     ::shadow text {
       stroke-width: 0;
     }
@@ -134,6 +131,13 @@ Element providing a Thelma wrapper for the Google geochart.
         self.data.unshift(["Region", self.dataLabel]);
 
        
+      },
+      /**
+       * called when resized
+       * @return {[None]} 
+       */
+      resize: function() {
+        this.$.googleChart.drawChart();
       },
       /**
        * 'configureOptions' sets the appropriate options properties for the map, given the attribute values
