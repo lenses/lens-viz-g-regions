@@ -2,10 +2,10 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
-  <title>th-google-regions Demo</title>
+  <title>lens-viz-g-regions Demo</title>
 
   <script src="../webcomponentsjs/webcomponents.js"></script>
-  <link rel="import" href="th-google-regions.html">
+  <link rel="import" href="lens-viz-g-regions.html">
 
 </head>
   
@@ -18,14 +18,14 @@
   </style>
 <body unresolved>
 
-  <p>An `th-google-regions` looks like this:</p>
+  <p>An `lens-viz-g-regions` looks like this:</p>
 
-  <th-google-regions></th-google-regions>
+  <lens-viz-g-regions></lens-viz-g-regions>
     
 </body>
   <script> 
     document.addEventListener('polymer-ready', function() {
-        var chart = document.querySelector('th-google-regions'); 
+        var chart = document.querySelector('lens-viz-g-regions'); 
         document.addEventListener('google-chart-render', function() {
           console.log('changing selection');
           chart.selection = [{row: 1, column: null}];

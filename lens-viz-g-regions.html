@@ -7,14 +7,14 @@ Element providing a Thelma wrapper for the Google geochart.
 
 ##### Example
 
-    <th-google-regions regionCode="155" resolution="countries" color="blue"></th-google-regions>
+    <lens-viz-g-regions regionCode="155" resolution="countries" color="blue"></lens-viz-g-regions>
 
-@element th-google-regions
+@element lens-viz-g-regions
 @blurb Element providing a Thelma wrapper for the Google geochart.
 @status alpha
-@homepage http://nishacodes.github.io/th-google-regions
+@homepage http://nishacodes.github.io/lens-viz-g-regions
 -->
-<polymer-element extends="th-animated" name="th-google-regions" attributes="chartData selection regionCode resolution dataLabel color backgroundColor minValue maxValue displayMode legend">
+<polymer-element extends="th-animated" name="lens-viz-g-regions" attributes="chartData selection regionCode resolution dataLabel color backgroundColor minValue maxValue displayMode legend">
   <template> 
   <core-style ref="theme"></core-style>
   
@@ -34,7 +34,7 @@ Element providing a Thelma wrapper for the Google geochart.
 
   <script>
 
-    Polymer('th-google-regions', {
+    Polymer('lens-viz-g-regions', {
       /**
        * 'regionCode' refers to the entire scope of the map
        * @type {String}
